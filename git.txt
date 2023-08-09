@@ -1,0 +1,104 @@
+https://www.youtube.com/watch?v=Ebe9D5zRkvM
+
+Git - (rozproszony) system kontroli wersji
+główny serwer - repozytorium - najnowsza wersja kodu, gdzie mamy projekt
+GitHub - to serwis w którym możemy umieścić repozytoria Gita
+w przypadku Gita gdy ścigamy plik (kod) na dysk, pobieramy całe repozytorium wraz z jego historią
+commit - zmiany które wprowadzamy do kodu
+z Gitem można pracować offline
+
+cmd
+git --version
+
+git-scm.com downloads
+
+Git GUI Here
+
+
+Git Bash Here
+$ cd git-kurs-folder
+$ git init           - tworzenie repozytorium
+$ ls -a
+
+
+$ git status - pokazuje status repozytorium
+branch master - (brancz) gałąź
+wszystkie commity umieszczamy na branchach
+$ touch 1.txt
+$ code .               - aktualny katalog
+$ git status - pokaze utworzone pliki
+
+
+working directory - tracked (które są widziane przez Gita) & untracked
+$ git add 1.txt      - dodanie do trackowania
+$ git status
+staging area - po "git add"
+
+$ git commit -m"Dodajemy pierwszy plik 1.txt"         - m message, zmiany które wprowadzamy
+
+$ git config --global user.name "Your name"
+$ git config --global user.email you@example.com
+
+repository - po "git commit"
+
+$ git log       - historia commitów
+
+$ git add -A    - dodanie wszystkich plików do trackowania 2.txt, 3.txt, 4.txt do staging area
+$ git commit -m"Drugi commit dodajemy trzy nowe pliki"
+
+$ q    - wyjscie
+Jeżeli edytujemy 1.txt i damy "git status" pokaze ze byl modyfikowany, ale zmiana nie zostala dodana do staging
+$ git add 1.txt         - zmiany zostana zapisane
+$ git commit -m"Trzeci commit modyfikacja pliku 1.txt"
+
+$ git commit -am"Dodamy do staging i commitujemy"
+
+$ git branch        - pokazuje na jakim branchu jestesmy
+
+
+
+CODE REVIEW
+$ git checkout -b"logowanie"        - stworzenie nowego brancha
+uzupelnienie  nazw za pomoca tab
+
+$ git checkout master              - przelaczenie sie na innego brancha
+$ git merge logowanie              - polaczenie brancha - dodanie i scalenie np. z master
+
+
+GitHub
+$ git push - dodanie do zewnetrznego serwera
+
+
+GitHub po lewej stronie Repositories (New)
+.gitignore - informacje o plikach i folderach które nie powinny być śledzone przez gita
+
+$ git remote add origin
+$ git branch -M main                  - zmienia nazwe obecnego brancha na main
+
+$ git push -u origin master
+szukamy Settings > Developer settings > Personal access tokens > Note - podajemy nazwe tokena > zaznaczamy "repo" > Generate token
+wklejamy w miejsce hasła pod nazwą użytkownika
+
+
+
+Praca z wieloma użytkownikami
+$ mkdir kopia-repo
+$ cd kopia-repo
+
+Github > Code > kopiujemy adres
+$ git clone https://github.com/uzytkownik/git-kurs.git
+$ cd git-kurs
+$ git branch
+dodajemy nowe plki
+$ git push           - wysylamy na serwer
+$ git pull           - sciagamy zmiany do nas
+
+.gitignore - to plik tekstowy w ktorym podajemy jakich plikow i folderow git ma nie sledzic
+$ vi .gitignore
+
+*.rozszerzenie
+katalog/
+.nazwa
+
+:wq
+
