@@ -1,0 +1,311 @@
+https://www.youtube.com/watch?v=Ebe9D5zRkvM
+
+Git - to obecnie najpopularniejszy rozproszony system kontroli wersji
+umożliwiający nam porównanie różnych wersji plików.
+Zasada działania jest prosta, mamy jakiś główny serwer
+tzw. repozytorium, w którym trzymamy najnowszą wersję kodu projektu,
+nad zmianami w projekcie pracujemy lokalnie i kiedy uznamy, że możemy się nimi podzielić
+wtedy wysyłamy nasze zmiany do repozytorium
+
+GitHub to serwis w którym możemy umieścić repozytoria Gita,
+projekt możemy przechowywać lokalnie na naszym komputerze
+lub umieścić w repozytorium w odpowiednim serwisie.
+
+W przypadku Gita gdy ściągamy plik (kod) na dysk, pobieramy całe repozytorium wraz z jego historią.
+
+commit - zmiany które wprowadzamy do kodu
+Z Gitem możemy pracować offline, nie potrzebujemy połączenia, gdy chcemy wprowadzić jakieś zmiany
+do repozytorium lokalnego.
+
+cmd.exe w Windows
+git --version (po pobraniu, trzeba uruchomić ponownie cmd.exe)
+
+git-scm.com downloads (URL)
+Pobieranie na Linuksie: sudo apt-get install git
+
+Git GUI Here (inna opcja, niezalecana)
+
+
+utworzyć folder roboczy
+kliknąć w menu kontekstowym na: Git Bash Here
+$ cd git-kurs-folder - folder projekty
+$ git init           - stworzenie repozytorium
+$ ls -a              - wszystkie pliki oraz te ukryte znajdujące się w folderze
+
+
+$ git status - pokazuje status naszego repozytorium
+jesteśmy na: branch master - (brancz-e) gałąź-ie - i tutaj nie mamy żadnych commitów
+Każda zmiana, którą dodajemy do Gita to jest tzw. commit.
+Wszystkie commity umieszczamy na branchach
+
+Dodanie do naszego repozytorium pierwszych plików
+$ touch 1.txt          - utworzenie nowego pliku
+$ code .               - otworzy aktualny katalog w Visual Studio Code
+$ git status           - pokaże utworzone pliki, które nie wprowadziliśmy do repozytorium
+
+Z czego składa się repozytorium Gita?
+
+Obszar 1: working directory - tracked (które są widziane przez Gita, które my dodaliśmy) & untracked
+To katalog w którym pracujemy, dodajemy pliki. I w tym katalogu możemy mieć 2 typy plików:
+czyli 'tracked' oraz 'untracked' (o których Git nie ma pojęcia)
+$ git add 1.txt      - komenda służy, aby dodać plik do trackowania przez Gita
+$ git status         - zobaczyć co się pojawiło
+Plik 1.txt został dodany do: (Obszar 2: 'repozytorium Gita') staging area - po "git add"
+W tym obszarze znajdują się pliki, które trafią już do konkretnego commitu.
+
+Jeżeli chcemy scommitować zmiany (dodanie pliku 1.txt do repozytorium):
+$ git commit -m"Dodajemy pierwszy plik 1.txt"         - m message, zmiany które wprowadzamy
+
+Po wydaniu polecenia widzimy, że adres oraz nazwa nie zostały skonfigurowanie w Gicie:
+$ git config --global user.name "Your name"
+$ git config --global user.email you@example.com
+
+Obszar 3: repository (repozytorium) - po "git commit"
+
+$ git log       - komenda do wyświetlenia historii commitów na danym branchu
+                - opuszczenie przez klawisz 'q'
+                
+$ git add -A    - dodanie wszystkich plików untracked do trackowania
+                - 2.txt, 3.txt, 4.txt do staging area
+                
+$ git commit -m"Drugi commit dodajemy trzy nowe pliki"
+
+Jeżeli zedytujemy 1.txt i damy "git status" pokaże że był modyfikowany,
+ale zmiana nie została dodana do staging
+
+$ git add 1.txt         - po wydaniu polecenia zaświeci się na zielono
+                        - mamy zmiany dodane do staging, które zostaną zapisane do commita
+
+$ git commit -m"Trzeci commit, modyfikacja pliku 1.txt"
+
+Drugi sposób na dodawanie do stagingu:
+
+$ git commit -am"Dodajemy do stagingu i commitujemy"   - wszystkie pliki, które zmodyfikowaliśmy
+                                                       - dodamy do stagingu i od razu zacommitujemy
+
+$ git branch        - pokazuje nam na jakim branchu aktualnie jesteśmy i jakie branche mamy
+                    - w naszym repozytorium, aktulany w którym przebywamy jest oznaczony '*'
+                    - co oznacza, że jest aktywny i właśnie w nim się znajdujemy
+                    - opuszczamy przez klawisz 'q'
+
+Konfiguracja konsoli 'Zsh' z frameworkiem 'Oh My Zsh'z odpowiednimi pluginami m.in. do Gita
+na macOS i Linux
+
+branch master - to główna gałąź na której mamy zawsze działający kod
+
+przy nowej funkcjonalności nad którą pracujemy, tworzymy nowego brancha, gdzie pracujemy
+i dodajemy nowe commity
+
+element CODE REVIEW - sprawdzenie naszego kodu przez inne osoby z zespołu
+
+Załóżmy, że w naszej aplikacji mamy do zrobienia nowy moduł i na potrzeby implementacji
+tworzymy nowego brancha
+
+$ git checkout -b"logowanie"        - stworzenie nowego brancha, które polega na stworzeniu
+                                    - kopii brancha na którym aktualnie się znajdujemy
+uzupełnienie nazw za pomocą tab
+
+$ git checkout master              - kiedy stwierdzamy, że nasza implementacja jest gotowa
+                                   - i chcemy te zmiany z brancha 'logowanie' przenieść na
+                                   - branch master
+                                   
+$ git merge logowanie              - 'logowanie' to nazwa brancha, który chcemy połączyć
+                                   - z naszym branchem master, trzeba przebywać w katalogu master
+                                   - połączenie brancha - dodanie i scalenie np. z master
+
+
+GitHub - zewnętrzne repozytorium
+$ git push - dodanie do zewnętrznego serwera
+
+
+GitHub po lewej stronie Repositories klikamy na zielony (New)
+.gitignore - informacje o plikach i folderach które nie powinny być śledzone przez gita
+Klikamy na zielony (Create repository)
+
+Jak wypchnąć zmiany z już istniejącego repozytorium?
+$ git remote add origin https://github.com/username/repository.git
+### dodaliśmy informacje o repozytorium do którego będziemy wypychać nasze zmiany
+
+$ git branch -M main                  - komenda, która zmienia nazwę aktualnego brancha na main
+                                      - w naszym przypadku nie chcemy zmieniać nazwy, zostawimy master
+
+$ git push -u origin master           - chcemy, żeby nasze zmiany zostały wypchnięte do zewnętrznego
+                                      - repozytorium do brancha master
+                                      - 'origin' oznacza zewnętrzne repozytorium
+                                      
+Avatar w GitHub.com > szukamy Settings > Developer settings > Personal access tokens >
+> Note: podajemy nazwę tokena > zaznaczamy pełen dostęp do "repo" > Generate token
+
+Wklejamy token w miejsce hasła pod nazwą użytkownika.
+Nasze zmiany zostały już przesłane, wypchnięte do zewnętrznego repozytorium.
+
+
+
+
+Praca z wieloma użytkownikami
+
+Stworzenie kopii repozytorium w osobnym folderze
+'Druga biała konsola'
+$ mkdir kopia-repo           - utworzenie nowego katalogu
+$ cd kopia-repo              - wchodzimy do katalogu
+
+Tutaj utworzymy nasze repozytorium
+GitHub.com > Repozytorium > Code > Clone > kopiujemy adres (HTTPS)
+$ git clone https://github.com/uzytkownik/git-kurs.git
+$ cd git-kurs
+$ git branch
+Dodajemy nowe pliki .txt
+Dodajemy je do stagingu,
+commitujemy zmiany
+
+'Pierwsza czarna konsola'
+nie widzimy commita, który został zrobiony
+
+'Druga biała konsola'
+$ git push           - wysyłamy na serwer
+
+'Pierwsza czarna konsola'
+$ git log
+### jeszcze nie widzimy commitu, dlatego że cały czas jesteśmy w lokalnym repozytorium
+$ git pull           - ściągamy zmiany do nas
+### teraz zmiany zostały zaciągnięte
+
+'Druga biała konsola'
+Tworzymy nowy plik .txt
+Do stagingu,
+commitujemy
+i pushujemy do zewnętrznego repozytorium
+
+'Pierwsza czarna konsola'
+Dodajemy plik .txt
+Do stagingu,
+commitujemy
+Co stanie się jeśli spróbujemy te zmiany wypchnąć?
+$ git push
+### Git nam na to nie pozwoli, bo na branchu master są inne zmiany, a my tych zmian nie zaciągneliśmy
+$ git pull --rebase
+$ git push               - możemy wypchąć zmiany do zewnętrznego repo
+
+#2 - Rozwiązywanie konfliktów
+Konflikty przy pracy na projekcie się zdarzają (chodzi o kod).
+
+'Pierwsza czarna konsola'
+1) Wyczyszczenie naszego repoztorium git-kurs
+- usunięcie wszystkich .txt (delete)
+2) Te zmiany trzeba zacommitować
+$ git status       - pokaże usunięte pliki
+$ git commit -am"Wyczyszczenie repo"
+$ git push         - wypychamy zmiany do zewnętrznego repo na GitHubie
+
+'Druga biała konsola'
+3) Chcemy zaciągnąć zmiany z zewnętrznego repo
+$ git pull
+
+'Pierwsza czarna konsola'
+4)
+$ git status
+$ git commit -am"Nowy projekt"
+$ git push
+
+'Druga biała konsola'
+5)
+$ git pull --rebase
+
+'Pierwsza czarna konsola'
+6)
+$ git commit -am"Plik Main"
+$ git push
+
+'Druga biała konsola'
+7)
+$ git pull --rebase       - tak żebyśmy mieli tutaj ten sam stan projektu
+
+'Pierwsza czarna konsola'
+8) Zmienić zawartość kodu (nie zapisaliśmy zmian)
+$ git status
+$ git commit -am"Zmiana Hello World"
+Jeszcze nie pushujemy.
+
+'Druga biała konsola'
+9) Osoba pracująca w tej konsoli zdąrzy wprowadzić swoje zmiany
+a) wprowadzić zmiany w pliku np. .txt
+b) $ git commit -am"Zmiana w drugim repo"
+c) $ git push
+
+'Pierwsza czarna konsola'
+10)
+$ git push
+### Pojawia się informacja, że jakieś zmiany na naszym branchu już są
+### i musimy dokonać zaciągnięcia tych zmian
+$git pull --rebase
+### Git bez problemu mógł te zmiany bez problemu połączyć, bo nie powodowały żadnego konfliktu
+
+11)
+$ git log
+$ git push
+
+'Druga biała konsola'
+12)
+$ git pull --rebase
+13) Wprowadzamy zmiany w pliku .txt
+$ git status
+$ git commit -am"Hello White"
+$ git push
+
+'Pierwsza czarna konsola'
+13) Zmiana nie została zaciągnięta, ale zmieniamy zawartość .txt na "Hello Black"
+### To będzie zmiana konfliktująca
+$ git status
+$ git commit -am"Hello Black"
+$ git push                        - nie możemy tego zrobić
+$ git pull --rebase               - musimy commit zaciągnąć do nas, dostajemy informacje CONFLICT
+### Auto-merging - automatyczne połączenie dwóch zmian, ale się nie udało
+
+14) Wejść w IDE i wybrać Git > Resolve Conflicts > potem Apply
+$ git rebase --continue
+### 'a' tryb edycji w vim, potem 'Esc' :wq (write-quit) Enter
+$ git log
+$ git push
+
+'Druga biała konsola'
+15)
+$ git pull --rebase
+
+####################
+
+.gitignore - to nic innego jak plik tekstowy w którym podajemy jakich plików
+i folderów Git ma nie śledzić
+
+Utworzenie takiego pliku
+$ vi .gitignore
+
+//
+*.iml
+.idea/
+.DS_Store
+//
+
+### nie będzie śledził plików z rozszerzeniem .iml
+### nie chcemy żeby śledził katalog 'idea'
+### nie chcemy żeby śledził pliki .DS_Store
+
+vim > 'Esc' :wq
+
+$ git status
+
+Visual Studio Code gitignore - wyszukaj w Google
+
+Wycofywanie wprowadzonych zmian (git reset)
+$ touch [1-3].txt
+$ git add -A
+$ git commit -m"gitignore i nowe pliki"
+$ code .                                 - otwieramy katalog
+Wprowadzamy zmiany do plików [1-3].txt
+$ git status
+$ git reset --hard                       - gdy chcemy zrezygnować ze zmian, wrócić do etapu
+                                         - na którym byliśmy podczas ostatniego commita
+                                         - i w tym momencie cofneliśmy się do ostatniego commita
+Drugi sposób:
+- zedytować pliki
+Przywrócić jeden plik ze stanu ostatniego commita
+$ git checkout 3.txt
