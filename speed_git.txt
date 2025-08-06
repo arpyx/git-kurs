@@ -1,0 +1,31 @@
+Github > Code > kopiujemy adres
+$ git clone <paste_url_here>
+
+(- URL of repo example: https://github.com/uzytkownik/git-kurs.git )
+
+$ git log       (--- historia commitów, nazwa użytkownika lub imię z adresem mail
+
+$ git config --global user.name "Your name"
+$ git config --global user.email you@example.com
+
+$ cd git-kurs-folder
+$ git init      (--- tworzenie repozytorium
+
+$ git status    (--- pokaże utworzone pliki i status repozytorium
+
+$ git add -A    (--- dodanie wszystkich plików do trackowania 2.txt, 3.txt, 4.txt do staging area
+$ git commit -m"Drugi commit dodajemy trzy nowe pliki"
+
+$ git remote add origin <paste_url_here>
+(- URL of repo example: https://github.com/username/repository.git )
+
+Avatar w GitHub.com > szukamy Settings > Developer settings > Personal access tokens >
+> Note: podajemy nazwę tokena > zaznaczamy pełen dostęp do "repo" > Generate token
+
+$ git push    (--- dodanie do zewnętrznego serwera, wysyłamy na serwer
+$ git push -u origin master
+
+$ git add 1.txt    (--- dodanie do trackowania
+$ git commit -m"Dodajemy pierwszy plik 1.txt"    (--- m message, zmiany które wprowadzamy
+
+
